@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import type { EaterType, Ingredient, KnowledgeBase, MealRole, Recipe, Seasoning } from "@/lib/knowledge";
+import { buildMeal } from "@/lib/meal-builder";
+import type { EaterType, Ingredient, KnowledgeBase, MealRole, Seasoning } from "@/lib/knowledge";
 
 type Profile = {
   name: string;
@@ -67,22 +68,6 @@ function getRoleCounts(ingredients: Ingredient[]) {
   );
 }
 
-function findRecipe(recipes: Recipe[], ingredients: Ingredient[], seasonings: Seasoning[]) {
-  const ingredientNames = new Set(ingredients.map((item) => item.name));
-  const seasoningNames = new Set(seasonings.map((item) => item.name));
-
-  return (
-    recipes
-      .map((recipe) => ({
-        recipe,
-        score:
-          recipe.ingredients.filter((item) => ingredientNames.has(item)).length * 2 +
-          recipe.seasonings.filter((item) => seasoningNames.has(item)).length
-      }))
-      .sort((a, b) => b.score - a.score)[0]?.recipe ?? recipes[0]
-  );
-}
-
 export default function RecipeTinderApp({ knowledge }: { knowledge: KnowledgeBase }) {
   const [stage, setStage] = useState<Stage>("name");
   const [profileNames, setProfileNames] = useState<string[]>([]);
@@ -116,7 +101,7 @@ export default function RecipeTinderApp({ knowledge }: { knowledge: KnowledgeBas
   const eaterType = profile.eaterType ?? "flexible";
   const counts = getRoleCounts(selectedIngredients);
   const targets = roleTargets[eaterType];
-  const matchedRecipe = findRecipe(knowledge.recipes, selectedIngredients, selectedSeasonings);
+  const builtMeal = buildMeal(selectedIngredients, selectedSeasonings, knowledge.recipes);
   const highSodiumCount = selectedSeasonings.filter((item) => item.limit === "high-sodium").length;
 
   function enterProfile(name: string) {
@@ -184,7 +169,7 @@ export default function RecipeTinderApp({ knowledge }: { knowledge: KnowledgeBas
     setProfile((current) => ({
       ...current,
       likedSeasonings: [...current.likedSeasonings, currentSeasoning.name],
-      lastRecipe: matchedRecipe.name
+      lastRecipe: builtMeal.name
     }));
     setSeasoningDeck((deck) => deck.slice(1));
     setDragX(0);
@@ -357,27 +342,31 @@ export default function RecipeTinderApp({ knowledge }: { knowledge: KnowledgeBas
   }
 
   function renderRecipe() {
-    const orderedSteps = selectedIngredients.map((ingredient) => `处理 ${ingredient.name}`);
-
     return (
       <section className="recipe-page">
         <div className="recipe-hero">
-          <p className="eyebrow">今日食谱</p>
-          <h1>{matchedRecipe.name}</h1>
-          <p>{matchedRecipe.mealCategory}</p>
+          <p className="eyebrow">今日组合食谱</p>
+          <h1>{builtMeal.name}</h1>
+          <p>{builtMeal.mealCategory}{builtMeal.inspiration ? ` · 参考 ${builtMeal.inspiration}` : ""}</p>
         </div>
         <div className="recipe-grid">
           <section className="panel">
             <h2>按选择顺序备菜</h2>
-            <ol>{orderedSteps.map((step) => <li key={step}>{step}</li>)}</ol>
+            <ol>{builtMeal.prepSteps.map((step) => <li key={step}>{step}</li>)}</ol>
           </section>
           <section className="panel">
-            <h2>烹饪步骤</h2>
-            <ol>{matchedRecipe.steps.map((step) => <li key={step}>{step}</li>)}</ol>
+            <h2>组合烹饪步骤</h2>
+            <ol>{builtMeal.cookingSteps.map((step) => <li key={step}>{step}</li>)}</ol>
           </section>
           <section className="panel">
-            <h2>已选组合</h2>
-            <Cart items={[...profile.likedIngredients, ...profile.likedSeasonings]} empty="暂无选择" />
+            <h2>覆盖检查</h2>
+            <Cart
+              items={[
+                ...builtMeal.coverage.ingredients.map((item) => `食材 · ${item}`),
+                ...builtMeal.coverage.seasonings.map((item) => `调味 · ${item}`)
+              ]}
+              empty="暂无选择"
+            />
             <div className="button-row">
               <button className="secondary" onClick={() => setStage("name")}>切换姓名</button>
               <button onClick={restart}>重新选择</button>
