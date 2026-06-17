@@ -1,0 +1,67 @@
+{
+  // UI flow for the recipe Tinder app.
+  "appName": "Food Dictionary",
+  "storage": {
+    "profileIndexKey": "food-dictionary:profile-names",
+    "profileRecordKey": "<user-name>",
+    "profileFields": ["name", "eaterType", "likedIngredients", "likedSeasonings", "lastRecipe"]
+  },
+  "states": [
+    {
+      "id": "name-gate",
+      "entry": "firstVisit || noSelectedProfile",
+      "actions": ["manualNameInput", "fakeSeederName", "existingProfileSelect"],
+      "next": "taste-interview"
+    },
+    {
+      "id": "taste-interview",
+      "entry": "newProfile || profileMissingEaterType",
+      "actions": ["selectVegetarian", "selectMeatLover", "selectFlexible"],
+      "next": "ingredient-swipe"
+    },
+    {
+      "id": "ingredient-swipe",
+      "entry": "profileReady",
+      "deckSource": "knowledge/ingredients.md",
+      "filters": ["eaterType", "mealBalanceRules"],
+      "leftSwipe": "dismissIngredient",
+      "rightSwipe": "addToTodayCart",
+      "completion": "minimumLikedIngredientsReached",
+      "next": "seasoning-swipe"
+    },
+    {
+      "id": "seasoning-swipe",
+      "deckSource": "knowledge/seasonings.md",
+      "filters": ["selectedIngredients", "healthLimitRules"],
+      "leftSwipe": "dismissSeasoning",
+      "rightSwipe": "addSeasoning",
+      "completion": "minimumSeasoningsReached || maxSeasoningsReached",
+      "next": "recipe-result"
+    },
+    {
+      "id": "recipe-result",
+      "source": "knowledge/recipes.md",
+      "actions": ["generateStepsBySelectionOrder", "restartIngredientSwipe", "changeProfile"],
+      "next": "ingredient-swipe"
+    }
+  ],
+  "dietaryRules": {
+    "vegetarian": {
+      "allowedIngredientGroups": ["素食", "综合"],
+      "targetCounts": { "protein": 1, "vegetable": 2, "staple": 1 }
+    },
+    "meat-lover": {
+      "allowedIngredientGroups": ["肉食", "综合"],
+      "targetCounts": { "protein": 1, "vegetable": 1, "staple": 1 }
+    },
+    "flexible": {
+      "allowedIngredientGroups": ["素食", "肉食", "综合"],
+      "targetCounts": { "protein": 1, "vegetable": 2, "staple": 1 }
+    }
+  },
+  "seasoningRules": {
+    "maxTotalSeasonings": 3,
+    "maxHighSodiumSeasonings": 1,
+    "preferFreshAromatics": true
+  }
+}

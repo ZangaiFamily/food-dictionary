@@ -1,0 +1,72 @@
+{
+  // Structured UI screen contract used before implementation.
+  "theme": {
+    "tone": "fresh, practical, card-driven",
+    "breakpoints": {
+      "mobile": "360px-767px",
+      "tablet": "768px-1023px",
+      "desktop": "1024px+"
+    },
+    "layout": {
+      "mobile": "singleColumnFullHeight",
+      "desktop": "twoColumnWorkbench"
+    }
+  },
+  "screens": [
+    {
+      "id": "name-gate",
+      "title": "选择食客",
+      "components": [
+        { "type": "profileSelect", "source": "localStorage.food-dictionary:profile-names" },
+        { "type": "textInput", "field": "name" },
+        { "type": "button", "action": "fakeSeederName" },
+        { "type": "button", "action": "continue" }
+      ]
+    },
+    {
+      "id": "taste-interview",
+      "title": "风味采访",
+      "components": [
+        {
+          "type": "segmentedCards",
+          "field": "eaterType",
+          "options": [
+            { "value": "vegetarian", "label": "素食", "description": "以蔬菜、豆类、谷物为主" },
+            { "value": "meat-lover", "label": "肉食主义者", "description": "优先推荐肉类和高蛋白食材" },
+            { "value": "flexible", "label": "都可以", "description": "综合推荐，自动控制搭配比例" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ingredient-swipe",
+      "title": "今天买什么",
+      "components": [
+        { "type": "swipeCard", "data": "Ingredient" },
+        { "type": "iconButton", "action": "dislike" },
+        { "type": "iconButton", "action": "like" },
+        { "type": "cartRail", "data": "likedIngredients" },
+        { "type": "progressMeter", "data": "mealBalanceRules" }
+      ]
+    },
+    {
+      "id": "seasoning-swipe",
+      "title": "搭配调味",
+      "components": [
+        { "type": "swipeCard", "data": "Seasoning" },
+        { "type": "limitNotice", "data": "seasoningRules" },
+        { "type": "cartRail", "data": "likedSeasonings" }
+      ]
+    },
+    {
+      "id": "recipe-result",
+      "title": "生成食谱",
+      "components": [
+        { "type": "recipeMatch", "data": "Recipe" },
+        { "type": "orderedPrepSteps", "data": "likedIngredients" },
+        { "type": "button", "action": "restart" },
+        { "type": "button", "action": "changeProfile" }
+      ]
+    }
+  ]
+}
