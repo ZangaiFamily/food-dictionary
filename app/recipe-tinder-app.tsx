@@ -35,6 +35,11 @@ const roleTargets: Record<EaterType, Record<MealRole, number>> = {
   flexible: { protein: 1, vegetable: 2, staple: 1 }
 };
 
+function getPublicAssetPath(assetPath: string) {
+  const cleanPath = assetPath.replace(/^\/+/, "");
+  return `${process.env.NEXT_PUBLIC_BASE_PATH}/${cleanPath}`;
+}
+
 function emptyProfile(name = ""): Profile {
   return { name, likedIngredients: [], likedSeasonings: [] };
 }
@@ -270,6 +275,14 @@ export default function RecipeTinderApp({ knowledge }: { knowledge: KnowledgeBas
               onDragEnd={() => finishDrag(dislikeIngredient, likeIngredient)}
             >
               <span className="badge">{currentIngredient.group}</span>
+              <div className="card-art-frame">
+                <img
+                  className="card-art"
+                  src={getPublicAssetPath(currentIngredient.image)}
+                  alt={`${currentIngredient.name} 像素图`}
+                  draggable={false}
+                />
+              </div>
               <h1>{currentIngredient.name}</h1>
               <p>{currentIngredient.calories}</p>
               <dl>
@@ -318,6 +331,14 @@ export default function RecipeTinderApp({ knowledge }: { knowledge: KnowledgeBas
               <span className={`badge ${currentSeasoning.limit === "high-sodium" ? "warn" : ""}`}>
                 {currentSeasoning.limit}
               </span>
+              <div className="card-art-frame">
+                <img
+                  className="card-art"
+                  src={getPublicAssetPath(currentSeasoning.image)}
+                  alt={`${currentSeasoning.name} 像素图`}
+                  draggable={false}
+                />
+              </div>
               <h1>{currentSeasoning.name}</h1>
               <p>{currentSeasoning.flavor}</p>
               <dl>

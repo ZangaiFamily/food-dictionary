@@ -12,6 +12,7 @@ export type Ingredient = {
   price: string;
   group: IngredientGroup;
   role: MealRole;
+  image: string;
   recipes: string[];
 };
 
@@ -20,6 +21,7 @@ export type Seasoning = {
   flavor: string;
   price: string;
   limit: SeasoningLimit;
+  image: string;
   pairings: string[];
   usage: string;
 };
@@ -75,6 +77,7 @@ export function getKnowledgeBase(): KnowledgeBase {
     price: row["大约物价"],
     group: row["分类"] as IngredientGroup,
     role: row["膳食角色"] as MealRole,
+    image: row["图片"],
     recipes: splitList(row["可以组成的食谱"])
   }));
 
@@ -83,6 +86,7 @@ export function getKnowledgeBase(): KnowledgeBase {
     flavor: row["风味"],
     price: row["大约物价"],
     limit: row["限制等级"] as SeasoningLimit,
+    image: row["图片"],
     pairings: splitList(row["适配食材"]),
     usage: row["建议用量"]
   }));

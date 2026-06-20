@@ -206,7 +206,31 @@ h2 {
 }
 
 .swipe-card h1 {
-  font-size: clamp(3rem, 8vw, 5.4rem);
+  margin-bottom: 8px;
+  font-size: clamp(2.5rem, 7vw, 4.6rem);
+}
+
+.card-art-frame {
+  height: 172px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(216, 208, 195, 0.78);
+  border-radius: 8px;
+  background:
+    linear-gradient(45deg, rgba(239, 230, 216, 0.7) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(239, 230, 216, 0.7) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(239, 230, 216, 0.7) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(239, 230, 216, 0.7) 75%),
+    #fffaf2;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+  background-size: 16px 16px;
+}
+
+.card-art {
+  width: min(168px, 72%);
+  height: min(168px, 72%);
+  image-rendering: pixelated;
+  object-fit: contain;
 }
 
 .badge {

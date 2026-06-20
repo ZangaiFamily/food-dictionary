@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" shape-rendering="crispEdges" role="img" aria-label="Pixel egg">
+  <rect width="128" height="128" fill="none"/>
+  <rect x="48" y="24" width="32" height="16" fill="#fff6dc"/>
+  <rect x="40" y="40" width="48" height="24" fill="#fff0c8"/>
+  <rect x="32" y="64" width="64" height="32" fill="#f3d9a8"/>
+  <rect x="40" y="96" width="48" height="16" fill="#d9b77f"/>
+  <rect x="56" y="64" width="24" height="24" fill="#f5a623"/>
+  <rect x="64" y="56" width="16" height="8" fill="#ffd56d"/>
+  <rect x="48" y="48" width="16" height="8" fill="#fffaf0"/>
+</svg>

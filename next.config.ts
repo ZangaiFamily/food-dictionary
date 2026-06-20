@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   output: "export",
   basePath: isProduction ? "/food-dictionary" : undefined,
   assetPrefix: isProduction ? "/food-dictionary/" : undefined,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isProduction ? "/food-dictionary" : ""
+  },
   images: {
     unoptimized: true
   }

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" shape-rendering="crispEdges" role="img" aria-label="Pixel beef slices">
+  <rect width="128" height="128" fill="none"/>
+  <rect x="24" y="40" width="72" height="16" fill="#8e2f2a"/>
+  <rect x="32" y="56" width="80" height="16" fill="#b64038"/>
+  <rect x="16" y="72" width="72" height="16" fill="#7f2926"/>
+  <rect x="40" y="88" width="72" height="16" fill="#a33631"/>
+  <rect x="40" y="48" width="24" height="8" fill="#f0b1a1"/>
+  <rect x="56" y="64" width="32" height="8" fill="#f0b1a1"/>
+  <rect x="32" y="80" width="24" height="8" fill="#d98a7c"/>
+  <rect x="72" y="96" width="24" height="8" fill="#d98a7c"/>
+</svg>

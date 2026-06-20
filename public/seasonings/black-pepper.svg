@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" shape-rendering="crispEdges" role="img" aria-label="Pixel black pepper">
+  <rect width="128" height="128" fill="none"/>
+  <rect x="40" y="24" width="48" height="16" fill="#3a332d"/>
+  <rect x="32" y="40" width="64" height="64" fill="#5b5047"/>
+  <rect x="40" y="104" width="48" height="8" fill="#2c2724"/>
+  <rect x="48" y="48" width="8" height="8" fill="#1f1b19"/>
+  <rect x="64" y="56" width="8" height="8" fill="#1f1b19"/>
+  <rect x="80" y="48" width="8" height="8" fill="#1f1b19"/>
+  <rect x="48" y="72" width="8" height="8" fill="#1f1b19"/>
+  <rect x="72" y="80" width="8" height="8" fill="#1f1b19"/>
+  <rect x="56" y="32" width="16" height="8" fill="#7a6d62"/>
+</svg>

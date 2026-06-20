@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" shape-rendering="crispEdges" role="img" aria-label="Pixel lemon juice">
+  <rect width="128" height="128" fill="none"/>
+  <rect x="32" y="48" width="64" height="16" fill="#f5d742"/>
+  <rect x="24" y="64" width="80" height="24" fill="#ffe66d"/>
+  <rect x="32" y="88" width="64" height="16" fill="#d9b82f"/>
+  <rect x="48" y="56" width="16" height="8" fill="#fff4a3"/>
+  <rect x="64" y="40" width="24" height="8" fill="#6f9f50"/>
+  <rect x="72" y="32" width="16" height="8" fill="#4f7d35"/>
+  <rect x="64" y="64" width="8" height="32" fill="#d0a928"/>
+  <rect x="40" y="72" width="48" height="8" fill="#fff4a3"/>
+</svg>

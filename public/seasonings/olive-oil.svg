@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" shape-rendering="crispEdges" role="img" aria-label="Pixel olive oil bottle">
+  <rect width="128" height="128" fill="none"/>
+  <rect x="52" y="16" width="24" height="16" fill="#4f7d35"/>
+  <rect x="48" y="32" width="32" height="16" fill="#6c9a41"/>
+  <rect x="40" y="48" width="48" height="56" fill="#94b447"/>
+  <rect x="48" y="104" width="32" height="8" fill="#4f6d2d"/>
+  <rect x="48" y="64" width="32" height="24" fill="#f1d05a"/>
+  <rect x="56" y="72" width="16" height="8" fill="#7f9b38"/>
+  <rect x="72" y="48" width="8" height="56" fill="#b8c957"/>
+</svg>
